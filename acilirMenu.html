@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Açılır Menü Uygulaması</title>   
+        <meta charset="utf-8"/>
+        <style>
+
+            ul{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #2d3138;
+            }
+            
+            li{
+                float: left;
+            }
+
+            li a{
+                display: inline-block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            li a:hover {
+                background: #994950;
+            }
+
+            li.dropdown {
+                display: inline-block;
+            }
+            
+            .dropdown-content{
+                display: none;
+                background: #d2d4d8;
+                min-width: 160px;
+                position: absolute;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                
+            }
+
+            .dropdown-content a{
+                color: black;
+                padding: 12px 10px;
+                display: block;
+                text-align: left;
+                text-decoration: none;
+            }
+
+            .dropdown:hover .dropdown-content{
+                display: block;
+            }
+
+            .dropdown-content a:hover {
+                background: #b9bbbf;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <ul>
+            <li><a href="http://bil.muhendislik.omu.edu.tr/">Anasayfa</a></li>
+                <li class="dropdown"><a href="#hakkimizda">Hakkımızda</a>
+                <div class="dropdown-content">
+                    <a href="http://bil.muhendislik.omu.edu.tr/hakkimizda/bolumumuz">Bölümümüz</a>
+                    <a href="http://bil.muhendislik.omu.edu.tr/hakkimizda/yonetim">Yönetim</a>
+                    <a href="http://bil.muhendislik.omu.edu.tr/hakkimizda/komisyonlar">Komisyonlar</a>
+                </div>
+            </li>
+            <li class="dropdown"><a href="#personel">Personel</a>
+                <div class="dropdown-content">
+                    <a href="http://bil.muhendislik.omu.edu.tr/personel/ogretim-uyeleri">Öğretim Üyeleri</a>
+                    <a href="http://bil.muhendislik.omu.edu.tr/personel/arastirma-gorevlileri">Araştırma Görevlileri</a>
+                </div>
+            </li>
+            <li class="dropdown"><a href="#egitim">Eğitim</a>
+                <div class="dropdown-content">
+                    <a href="http://bil.muhendislik.omu.edu.tr/personel/ogretim-uyeleri">Lisans</a>
+                    <a href="http://bil.muhendislik.omu.edu.tr/personel/arastirma-gorevlileri">Yüksek Lisans</a>
+                    <a href="http://bil.muhendislik.omu.edu.tr/personel/arastirma-gorevlileri">Doktora</a>
+                    <a href="http://bil.muhendislik.omu.edu.tr/personel/arastirma-gorevlileri">Laboratuvarlar</a>
+                </div>
+            </li>
+            <li><a href="http://bil.muhendislik.omu.edu.tr/iletisim">İletişim</a></li> 
+        </ul>
+    </body>
+
+</html>
