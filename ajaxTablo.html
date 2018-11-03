@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX UYGULAMA</title>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                border: 2px solid;
+                table-layout: auto; 
+                width: 30%;
+                box-shadow: 5px 10px #cfcbcb; 
+                margin-top: 30px;  
+            }
+
+            td, th {
+                border: 2px solid hsl(0, 8%, 88%);
+                padding: 8px;  
+                text-align: center;
+            }
+            h5, p {
+                color: #B22626;
+                margin-top: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <h5>Öğrenciye Tıklanıldığında Bilgilerin Ekrana Getirilmesi</h5>
+        <button type="button" onclick="loadTable()">tablo getir</button>
+        <p id="perDetails"></p>
+        <table id="tablo"></table>
+        <script>
+                function loadTable(){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        tables(this);
+                    }
+                };
+                xhttp.open("GET", "ajaxTablo.xml", true);
+                xhttp.send();
+            }
+            function tables(xml){
+                var xmlDoc = xml.responseXML;
+                var table = "<tr onclick='detail()'><th>Numara</th><th>Bölüm</th><th>Ad - Soyad</th></tr>";
+                var x = xmlDoc.getElementsByTagName("person");
+                for (var i = 0; i <x.length; i++) {
+                table += "<tr onclick='onLoad(this)'><td>" +
+                x[i].getElementsByTagName("number")[0].childNodes[0].nodeValue + 
+                "</td><td>" +
+                x[i].getElementsByTagName("department")[0].childNodes[0].nodeValue + 
+                "</td><td>" +
+                x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue +
+                "</td></tr>" ;
+            }
+            document.getElementById("tablo").innerHTML = table;
+            }
+
+            function onLoad(index){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        detail(this,(index.rowIndex-1));
+                    }
+                };
+                xhttp.open("GET", "ajaxTablo.xml", true);
+                xhttp.send();
+            }
+            function detail(xml, index){
+                var xmlDoc = xml.responseXML;
+                var x = xmlDoc.getElementsByTagName("person");
+                var details = "<p>Numara: " + x[index].getElementsByTagName("number")[0].childNodes[0].nodeValue + "</p>" +
+                "<p>Ad - Soyad: " + x[index].getElementsByTagName("name")[0].childNodes[0].nodeValue + "</p>" +
+                "<p>Bölümü: " + x[index].getElementsByTagName("department")[0].childNodes[0].nodeValue + "</p>" +
+                "<p>Sınıfı: " + x[index].getElementsByTagName("class")[0].childNodes[0].nodeValue + "</p>" +
+                "<p>Ortalaması: " + x[index].getElementsByTagName("ort")[0].childNodes[0].nodeValue + "</p>" ;
+                document.getElementById("perDetails").innerHTML = details;
+            }
+        </script>
+    </body>
+</html>
