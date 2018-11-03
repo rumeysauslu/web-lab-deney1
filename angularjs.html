@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>AngularJS Uygulama</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <style>
+            table{
+                text-align: center;
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                border: 2px solid;
+                table-layout: auto; 
+                width: 60%;
+                box-shadow: 5px 10px #cfcbcb;
+            }
+            h2{
+                background-color: light grey; 
+                padding: 16px;
+            }
+            tr,th,td{
+                border: 2px solid hsl(0, 8%, 88%);
+                padding: 8px;
+            }
+            button{
+                background-color:rgb(65, 141, 69);
+                color: white; 
+                border: none;
+                text-align: center;
+                text-decoration: none;
+                padding: 8px;
+                width: 15%;
+                height: 30px;
+                border-radius: 5px;
+            }
+            button:hover{
+                background-color:rgb(51, 90, 52);
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div ng-app = "userList" ng-controller = "listCtrl" >
+           <h2>Kullanıcı Listesi</h2>
+           <table>
+               <tr>
+                   <th>Ad</th>
+                   <th>Soyad</th>
+                   <th>Email</th>
+                   <th>Kullanıcı Sil</th>
+               </tr>
+               <tr ng-repeat = "x in users" >
+                   <td>{{x.name}}</td>
+                   <td>{{x.surname}}</td>
+                   <td>{{x.mail}}</td>
+                   <td id="silButon"ng-click="removeUser($index)">x</td>
+               </tr>
+           </table>
+           <br>
+           <button ng-click="newUser()">Yeni Kullanıcı Ekle</button>
+           <br><br>
+           <div>
+               <form name = "userForm" ng-show="showMe">
+                   Ad: <input type="text" name="userName" ng-model="uName">
+                   Soyad: <input type="text" name="userSurname" ng-model="uSurname">
+                   Email: <input type="email" name="userEmail" ng-model="uEmail">
+                   <span ng-show="userForm.userEmail.$error.email">Geçersiz bir e-posta</span> <br><br>
+                   <button ng-click="addUser()">Kullanıcı Ekle</button>
+               </form>
+               <p></p>
+           </div>
+        </div>
+        <script>
+            var app = angular.module("userList", [])
+            app.controller("listCtrl",function($scope){
+                $scope.users = [
+                    {name: "rumeysa", surname: "uslu", mail: "nur.uslu@gmail.com"},
+                ]
+                $scope.newUser = function(){
+                    $scope.showMe = !$scope.showMe;
+                }
+                $scope.addUser = function(){
+                   $scope.users.push({name: $scope.uName, surname: $scope.uSurname, mail: $scope.uEmail});
+                   $scope.uName = '';
+                   $scope.uSurname = '';
+                   $scope.uEmail = '';
+                   $scope.showMe = false;
+                }
+                $scope.removeUser = function(x){
+                    $scope.users.splice(x,1);}
+            });
+        </script>
+    </body>
+</html>
