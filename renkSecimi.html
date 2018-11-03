@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Renk Seçimi</title>
+    </head>
+    <body>
+        <button style="color: #b90000; width: 150px;" onclick="func(1)">Kırmızı</button><br><br>
+        <button style="color: #000189; width: 150px;" onclick="func(2)">Mavi</button><br><br>
+        <button style="color: #007400; width: 150px;" onclick="func(3)">Yeşil</button><br><br>
+        <input type="text" id="input">
+        <p id="string"></p>
+        <script>
+            function inputString() {
+                var txt;
+                var name = document.getElementById("input").value;
+                if (name == ""){
+                    txt = "bir isim girmediniz..";
+                } else {
+                    txt =  name;
+                }
+                document.getElementById("string").innerHTML = txt;
+            }
+            function func ( funcNumber ){
+                inputString();
+                switch ( funcNumber){
+                    case 1 : document.getElementById("string").style.color = "#b90000"; break;
+                    case 2 : document.getElementById("string").style.color = "#000189"; break;
+                    case 3 : document.getElementById("string").style.color = "#007400"; break;
+                    default : alert('bir hata oluştu..');
+                    }
+            }
+        </script>
+    </body>
+</html>
